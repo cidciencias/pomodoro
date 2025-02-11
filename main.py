@@ -12,7 +12,7 @@ WORK_MIN = 25
 SHORT_BREAK_MIN = 5
 LONG_BREAK_MIN = 20
 
-# ---------------------------- TIMER RESET ------------------------------- # 
+# ---------------------------- TIMER RESET ------------------------------- #
 
 # ---------------------------- TIMER MECHANISM ------------------------------- # 
 
@@ -27,6 +27,8 @@ def countdown(count):
 
     count_min = math.floor(count / 60)
     count_sec = count % 60
+    if count_sec < 10:
+        count_sec = f"0{count_sec}"
 
     canvas.itemconfig(timer_text, text=f"{count_min}:{count_sec}")
     if count > 0:
@@ -53,7 +55,7 @@ canvas.grid(column=1, row=1)
 start_button = Button(text="Start", highlightthickness=0, command=start_timer)
 start_button.grid(column=0, row=2)
 
-reset_button = Button(text="Reset", highlightthickness=0, command=timer_reset)
+reset_button = Button(text="Reset", highlightthickness=0)
 reset_button.grid(column=2, row=2)
 
 counter_label = Label(text="✓", fg=GREEN, bg=YELLOW)
